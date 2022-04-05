@@ -1,0 +1,3 @@
+#! /bin/bash
+
+ls -mpt | tr -d '[:blank:]'
