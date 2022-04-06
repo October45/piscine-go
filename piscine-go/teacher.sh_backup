@@ -1,0 +1,38 @@
+STREETS=$(grep "Annabel" ../the-final-cl-test/mystery/people | rev | cut -d$'\t' -f1 | rev | cut -d',' -f1 | sed 's/ /_/g')
+LINES=$(grep "Annabel" ../the-final-cl-test/mystery/people | rev | cut -d$' ' -f1 | rev)
+INTERVIEWS_FOLDER="../the-final-cl-test/mystery/interviews/"
+
+STREETS=($STREETS)
+LINES=($LINES)
+
+interviews=()
+
+for index in ${!STREETS[@]}
+do
+    interview_nr=$(cat ../the-final-cl-test/mystery/streets/${STREETS[$index]} | awk -v line=${LINES[$index]} 'NR == line {print $3}' | tr -d "#")
+    eval 'interview_nr'"$index"'=interview-"$interview_nr"'
+    interview=$(cat "${INTERVIEWS_FOLDER}interview-${interview_nr}")
+    interviews+=("$interview")
+done
+
+for index in ${!interviews[@]}
+do
+    export license_plate=$(echo ${interviews[index]} | grep "license" | cut -d'"' -f2 -f4)
+done
+
+grep $(echo ${interviews[2]} | grep "license" | cut -d'"' -f2 -f4 | sed 's/\"/\*/g') ../the-final-cl-test/mystery/vehicles
+echo $license_plate
+
+# for vehicle in $(cat ../the-final-cl-test/mystery/vehicles | grep -o "sed $license_plate 's/\"/\*/g'")
+# do
+#  echo $vehicle
+# done
+# INTERVIEWS_FOLDER="../the-final-cl-test/mystery/interviews/"
+# INTERVIEWS_FILES=$(ls ${INTERVIEWS_FOLDER})
+# INTERVIEWS_FILES=($INTERVIEWS_FILES)
+
+# for file in ${!INTERVIEWS_FILES[@]}
+# do
+#     cat ${INTERVIEWS_FOLDER}${INTERVIEWS_FILES[$file]}
+#     echo ""
+# done

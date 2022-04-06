@@ -1,0 +1,30 @@
+
+// func PrintSeq(n int) {
+// 	for i := n; i < 9; i++ {
+// 		j := i + 48
+// 		z01.PrintRune(rune(j))
+// 		PrintSeq(i + 1)
+// 	}
+// }
+
+// func PrintCombN(n int) {
+// 	if n == 1 {
+// 		for i := 0; i <= 9; i++ {
+// 			j := i + 48
+// 			z01.PrintRune(rune(j))
+// 			if i != 9 {
+// 				z01.PrintRune(',')
+// 				z01.PrintRune(' ')
+// 			}
+// 		}
+// 		z01.PrintRune(rune(48))
+// 	} else {
+// 		z01.PrintRune('0')
+// 		PrintSeq(n - 1)
+// 	}
+// 	z01.PrintRune('\n')
+// }
+
+// func main() {
+// 	PrintCombN(8)
+// }
