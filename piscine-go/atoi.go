@@ -17,7 +17,7 @@ func Atoi(s string) int {
 		return i
 	}
 	for _, c := range s {
-		if !((c >= '0' && c <= '9') || c == '-') {
+		if !((c >= '0' && c <= '9') || c == '-' || c == '+') {
 			return i
 		}
 	}
@@ -29,6 +29,7 @@ func Atoi(s string) int {
 		i = PerfAtoi(s)
 		i = -i
 	} else if s[0] == '+' && len(s) != 1 {
+		s = s[1:]
 		i = PerfAtoi(s)
 	} else {
 		i = PerfAtoi(s)
