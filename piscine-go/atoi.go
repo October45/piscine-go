@@ -1,7 +1,7 @@
 package piscine
 
 func PerfAtoi(s string) int {
-	var i int
+	var i int = 0
 	for _, c := range s {
 		if !(c >= '0' && c <= '9') {
 			return 0
