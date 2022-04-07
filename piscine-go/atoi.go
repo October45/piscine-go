@@ -28,7 +28,7 @@ func Atoi(s string) int {
 		s = s[1:]
 		i = PerfAtoi(s)
 		i = -i
-	} else {
+	} else if s[0] == '+' && len(s) != 1 {
 		i = PerfAtoi(s)
 	}
 	return i
