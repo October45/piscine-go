@@ -6,7 +6,11 @@ import (
 
 func PrintStr(s string) {
 	for _, c := range s {
-		z01.PrintRune(c)
+		if c == '\n' {
+			z01.PrintRune('\\')
+			z01.PrintRune('n')
+		} else {
+			z01.PrintRune(c)
+		}
 	}
-	z01.PrintRune('\n')
 }
