@@ -30,6 +30,8 @@ func Atoi(s string) int {
 		i = -i
 	} else if s[0] == '+' && len(s) != 1 {
 		i = PerfAtoi(s)
+	} else {
+		i = PerfAtoi(s)
 	}
 	return i
 }
