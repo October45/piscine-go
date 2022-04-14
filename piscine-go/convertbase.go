@@ -3,10 +3,8 @@ package piscine
 func NumFromBase(num int, base string) string {
 	mod := len(base)
 	i := 0
-	var str string
 	if num == 0 {
-		str = "0"
-		return str
+		return "0"
 	}
 	for j := 1; j <= num%mod; j++ {
 		i++
@@ -14,14 +12,10 @@ func NumFromBase(num int, base string) string {
 	for j := -1; j >= num%mod; j-- {
 		i++
 	}
-	if num/mod != 0 {
-		PrintNumBase(num/mod, base)
-	}
-	str += string(rune(base[i]))
-	return str
+	return NumFromBase(num/mod, base) + string(base[i])
 }
 
 func ConvertBase(nbr, baseFrom, baseTo string) string {
 	n := AtoiBase(nbr, baseFrom)
-	return NumFromBase(n, baseTo)
+	return NumFromBase(n, baseTo)[1:]
 }
