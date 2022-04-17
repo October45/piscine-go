@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 1 {
+	if len(os.Args) != 1 {
 		f, err := os.Open(os.Args[1])
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
@@ -23,8 +23,8 @@ func main() {
 			os.Stdout.Write(b[:n])
 		}
 	} else if len(os.Args) == 1 {
-		os.Stdout.Write("File name missing")
+		os.Stdout.Write([]byte("File name missing"))
 	} else {
-		os.Stdout.Write("Too many arguments")
+		os.Stdout.Write([]byte("Too many arguments"))
 	}
 }
