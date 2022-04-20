@@ -1,16 +1,15 @@
 package main
 
 import (
-	"os"
-
 	"fmt"
+	"os"
 )
 
 func main() {
-	if len(os.Args) != 1 {
+	if len(os.Args) != 1 && len(os.Args) <= 2 {
 		f, err := os.Open(os.Args[1])
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+			fmt.Printf("Error: %s\n", err)
 			os.Exit(1)
 		}
 		defer f.Close()
@@ -23,8 +22,8 @@ func main() {
 			os.Stdout.Write(b[:n])
 		}
 	} else if len(os.Args) == 1 {
-		os.Stdout.Write([]byte("File name missing"))
+		fmt.Printf("File name missing\n")
 	} else {
-		os.Stdout.Write([]byte("Too many arguments"))
+		fmt.Printf("Too many arguments\n")
 	}
 }
