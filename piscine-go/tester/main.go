@@ -1,16 +1,48 @@
 package main
 
 import (
-	"piscine"
+	"fmt"
 
-	"github.com/01-edu/z01"
+	"piscine"
 )
 
-func main() {
-	result := piscine.Rot14("Hello! How are You?")
-
-	for _, r := range result {
-		z01.PrintRune(r)
+func PrintList(l *piscine.List) {
+	it := l.Head
+	for it != nil {
+		fmt.Print(it.Data, " -> ")
+		it = it.Next
 	}
-	z01.PrintRune('\n')
+
+	fmt.Print(nil, "\n")
+}
+
+func main() {
+	link := &piscine.List{}
+	link2 := &piscine.List{}
+
+	fmt.Println("----normal state----")
+	piscine.ListPushBack(link2, 1)
+	PrintList(link2)
+	piscine.ListRemoveIf(link2, 1)
+	fmt.Println("------answer-----")
+	PrintList(link2)
+	fmt.Println()
+
+	fmt.Println("----normal state----")
+	piscine.ListPushBack(link, 1)
+	piscine.ListPushBack(link, "Hello")
+	piscine.ListPushBack(link, 1)
+	piscine.ListPushBack(link, "There")
+	piscine.ListPushBack(link, 1)
+	piscine.ListPushBack(link, 1)
+	piscine.ListPushBack(link, "How")
+	piscine.ListPushBack(link, 1)
+	piscine.ListPushBack(link, "are")
+	piscine.ListPushBack(link, "you")
+	piscine.ListPushBack(link, 1)
+	PrintList(link)
+
+	piscine.ListRemoveIf(link, 1)
+	fmt.Println("------answer-----")
+	PrintList(link)
 }
